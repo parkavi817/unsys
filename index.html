@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Communication System</title>
+    <link rel="stylesheet" href="css/form-styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            background: url('https://www.solarsystemscope.com/textures/download/8k_stars_milky_way.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            text-align: center;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2 {
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 16px;
+        }
+
+        button {
+            background: #8e44ad;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin-top: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .clock-container {
+            width: 100px;
+            height: 100px;
+            background: url('https://tse1.mm.bing.net/th?id=OIP._RYC-OaQj3IE1ACQEVczEAHaHa&pid=Api&P=0&h=180') no-repeat center;
+            background-size: cover;
+            margin: 20px auto;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: floatAnimation 3s ease-in-out infinite alternate;
+        }
+
+        select {
+  appearance: none; /* Removes default styling */
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+select option {
+  background: #2c003e;
+  color: white;
+}
+    </style>
+</head>
+<body>
+    <div id="error-message" style="display: none; color: red;"></div>
+    <div id="success-message" style="display: none; color: green;"></div>
+    <div class="clock-container"></div>
+    <div class="container">
+        <h1>Unified Communication System</h1>
+        
+        <div class="schedule-section">
+            <h2>Schedule Post</h2>
+            <form id="reminderForm">
+                <label for="platform">Select Platform:</label>
+                <select id="platform" required>
+                    <option value="">-- Select Platform --</option>
+                    <option value="YouTube">YouTube</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="Instagram">Instagram</option>
+                </select>
+                
+                <div class="form-group">
+                    <label for="contentType">Select Content Type:</label>
+                    <select id="contentType" required>
+                        <option value="">-- Select Type --</option>
+                        <option value="upload">Upload Media</option>
+                        <option value="text">Share Thought</option>
+                    </select>
+                </div>
+
+                <div id="uploadSection" class="hidden">
+                    <h2>Upload Content</h2>
+                    <div>
+                        <label for="youtubeUpload">Upload YouTube Video:</label>
+                        <input type="file" id="youtubeUpload" accept="video/*">
+                        <input type="file" id="youtubeUploadInput">
+
+                    </div>
+                    <div>
+                        <label for="socialMediaUpload">Upload Image for Facebook/Instagram:</label>
+                        <input type="file" id="socialMediaUpload" accept="image/*">
+                    </div>
+                </div>
+
+                <div id="textPostSection" class="hidden">
+                    <h2>Post a Thought</h2>
+                    <textarea id="thoughtText" rows="4" placeholder="Share your thoughts..."></textarea>
+                   
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Time:</label>
+                    <input type="time" id="time" required>
+                </div>
+                <button type="submit">Schedule Post</button>
+                <button type="button" onclick="redirectToEmail()">Send Google Form Reminder</button>
+                <button type="button" onclick="redirectToWelcome()">Back</button>
+            </form>
+        </div>
+        <div id="scheduledPosts" class="scheduled-posts-container"></div>
+    </div>
+
+    <script>
+
+function redirectToWelcome() {
+    window.location.href = 'login.html';
+}
+
+        document.getElementById('reminderForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevents the default page reload
+
+    // Simulate scheduling logic (You can add backend request here)
+    setTimeout(() => {
+        window.location.href = 'success.html'; // Redirect to success page
+    }, 1000); // Simulating delay before redirect (optional)
+});
+
+function redirectToEmail() {
+    window.location.href = 'send-email.html';
+}
+
+document.getElementById('contentType').addEventListener('change', function() {
+    const uploadSection = document.getElementById('uploadSection');
+    const textPostSection = document.getElementById('textPostSection');
+
+    if (this.value === 'upload') {
+        uploadSection.classList.remove('hidden');
+        textPostSection.classList.add('hidden');
+    } else if (this.value === 'text') {
+        textPostSection.classList.remove('hidden');
+        uploadSection.classList.add('hidden');
+    } else {
+        uploadSection.classList.add('hidden');
+        textPostSection.classList.add('hidden');
+    }
+});
+
+    </script>
+    <script src="main.js" defer></script>
+
+</body>
+</html>

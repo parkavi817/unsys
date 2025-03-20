@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Google Form Deadline</title>
+    <link rel="stylesheet" href="css/form-styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            background: url('https://www.solarsystemscope.com/textures/download/8k_stars_milky_way.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            text-align: center;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin: 15px 0;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 80px;
+        }
+
+        button {
+            background: #8e44ad;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #9b59b6;
+            transform: scale(1.05);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .nav-buttons button {
+            background: #3498db;
+        }
+
+        .nav-buttons button:hover {
+            background: #2980b9;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Schedule Google Form Deadline</h1>
+    </header>
+
+    <main class="container">
+        <section class="form-section">
+            <form id="emailForm">
+                <div class="form-group">
+                    <label for="emailList">Email Addresses (comma separated)</label>
+                    <textarea id="emailList" name="emailList" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Email Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Email Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="sendDate">Send Date</label>
+                    <input type="date" id="sendDate" name="sendDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="sendTime">Send Time</label>
+                    <input type="time" id="sendTime" name="sendTime" required>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit">Schedule Email</button>
+                </div>
+            </form>
+
+            <div class="nav-buttons">
+                <button onclick="goBack()">Back</button>
+                <button onclick="goHome()">Home</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById("emailForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Simulate scheduling email
+            setTimeout(() => {
+                window.location.href = "success.html";
+            }, 1000); // Redirect after 1 second
+        });
+
+        function goBack() {
+            window.location.href = "index.html";
+        }
+
+        function goHome() {
+            window.location.href = "welcome.html";
+        }
+    </script>
+</body>
+</html>

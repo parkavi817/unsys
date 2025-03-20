@@ -1,0 +1,14 @@
+{"level":"info","message":"Loading Google Credentials from:","timestamp":"2025-02-15T11:34:30.130Z"}
+{"level":"info","message":"Loading existing tokens from","timestamp":"2025-02-15T11:34:30.138Z"}
+{"level":"info","message":"Tokens successfully loaded","timestamp":"2025-02-15T11:34:30.138Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-02-15T11:34:30.146Z"}
+{"level":"info","message":"GET /api/fetch-google-forms","timestamp":"2025-02-15T11:35:23.559Z"}
+{"level":"info","message":"GET /api/scheduled-instagram","timestamp":"2025-02-15T11:35:54.692Z"}
+{"level":"info","message":"GET /","timestamp":"2025-02-15T11:42:37.300Z"}
+{"level":"info","message":"GET /css/form-styles.css","timestamp":"2025-02-15T11:42:37.330Z"}
+{"level":"info","message":"GET /css/styles.css","timestamp":"2025-02-15T11:42:37.336Z"}
+{"level":"info","message":"GET /js/app.js","timestamp":"2025-02-15T11:42:37.339Z"}
+{"level":"info","message":"GET /api/reminders","timestamp":"2025-02-15T11:42:37.364Z"}
+{"level":"info","message":"GET /api/reminders","timestamp":"2025-02-15T11:42:38.830Z"}
+{"level":"info","message":"POST /api/schedule-instagram","timestamp":"2025-02-15T11:42:50.279Z"}
+{"error":{"code":3,"fbtrace_id":"AP2EgbemnRd6hDb_wgtImwA","message":"(#3) User must be on whitelist","type":"OAuthException"},"level":"error","message":"Error scheduling Instagram post:","timestamp":"2025-02-15T11:42:50.894Z"}

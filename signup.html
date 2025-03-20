@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Unified Communication System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://www.solarsystemscope.com/textures/download/8k_stars_milky_way.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        .signup-container {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .signup-container h1 {
+            color: #FFD700;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #333;
+            color: white;
+        }
+        .input-group input:focus {
+            outline: none;
+            border: 2px solid #FFD700;
+        }
+        .signup-button, .login-button {
+            background: #FFD700;
+            color: black;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .signup-button:hover, .login-button:hover {
+            background: #FFA500;
+        }
+        .login-link {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .login-link a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        .success-message {
+            color: green;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="signup-container">
+    <h1>Sign Up</h1>
+    <form id="signupForm">
+        <div class="input-group">
+            <input type="text" id="name" placeholder="Full Name" required>
+        </div>
+        <div class="input-group">
+            <input type="email" id="email" placeholder="Email" required>
+        </div>
+        <div class="input-group">
+            <input type="password" id="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="signup-button">Sign Up</button>
+    </form>
+    <div class="login-link">
+        <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+    <div id="success-message" class="success-message"></div>
+    <button id="goToLogin" class="login-button" style="display: none;" onclick="location.href='login.html'">Go to Login Page</button>
+</div>
+
+<script>
+    document.getElementById('signupForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const successMessage = document.getElementById('success-message');
+        const goToLoginButton = document.getElementById('goToLogin');
+        successMessage.textContent = '';
+
+        const response = await fetch('/api/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password })
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            successMessage.textContent = 'Signup successful! A confirmation email has been sent.';
+            goToLoginButton.style.display = 'block';
+        } else {
+            successMessage.textContent = 'Signup failed: ' + result.error;
+        }
+    });
+</script>
+
+</body>
+</html>

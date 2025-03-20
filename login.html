@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Communication System - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://www.solarsystemscope.com/textures/download/8k_stars_milky_way.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        .login-container {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .login-container h1 {
+            color: #FFD700;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #333;
+            color: white;
+        }
+        .input-group input:focus {
+            outline: none;
+            border: 2px solid #FFD700;
+        }
+        .login-button {
+            background: #FFD700;
+            color: black;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .login-button:hover {
+            background: #FFA500;
+        }
+        .forgot-password, .signup-link {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .forgot-password a, .signup-link a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+        .forgot-password a:hover, .signup-link a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h1>Login to Unified Communication</h1>
+    <form id="loginForm">
+        <div class="input-group">
+            <input type="text" id="username" placeholder="Username" required>
+        </div>
+        <div class="input-group">
+            <input type="password" id="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="login-button">Login</button>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+    </form>
+    <div class="signup-link">
+        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </div>
+    <div id="error-message" class="error-message"></div>
+</div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const validUsername = 'adminUser';
+        const validPassword = 'adminPassword123';
+        const errorMessage = document.getElementById('error-message');
+        errorMessage.textContent = '';
+        if (username === "" || password === "") {
+            errorMessage.textContent = "Please fill in both fields!";
+        } else if (username === validUsername && password === validPassword) {
+            localStorage.setItem("username", username);
+            localStorage.setItem("role", "Admin");
+            window.location.href = 'index.html';
+        } else {
+            errorMessage.textContent = "Invalid username or password!";
+        }
+    });
+</script>
+
+</body>
+</html>
